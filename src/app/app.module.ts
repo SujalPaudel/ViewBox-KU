@@ -7,6 +7,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { ProposalListComponent } from './proposal-list/proposal-list.component';
 import { ProposalNewComponent } from './proposal-list/proposal-new.component';
+import { ProposalShowComponent } from './proposal-list/proposal-show.component';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +19,9 @@ import { AppRoutingModule } from './app-routing.module';
     HomepageComponent,
     DocumentsComponent,
     ProposalListComponent,
-    ProposalNewComponent
+    ProposalNewComponent,
+    ProposalShowComponent,
+
     //HomepageComponent
   ],
   imports: [
