@@ -1,0 +1,91 @@
+<h1> In the New Proposal</h1>
+<div>
+  <form #proposalForm = "ngForm"> <!--name of the form proposalForm of type angular form-->
+    <div class = "form-group">
+      <label for = "customer">Customer </label>
+      <input type = "text"
+             id = "customer"
+             placeholder="ABC Company"
+             required
+             name = "customer" 
+             #customer = 'ngModel' 
+             [(ngModel)] = "proposal.customer"
+      >
+      </div>
+
+      <div class = "form-group">
+        <label for = "portfolio_url">Portfolio_Url </label>
+        <input type = "text"
+               id = "portfolio_url"
+               required
+               name = "portfolio_url" 
+               #portfolio_url = 'ngModel' 
+               [(ngModel)] = "proposal.portfolio_url"
+      >
+      </div>
+
+      <div class = "form-group">
+        <label for = "tools">Tools </label>
+        <input type = "text"
+               id = "tools"
+               required
+               name = "tools" 
+               #tools = 'ngModel' 
+               [(ngModel)] = "proposal.tools"
+      >
+      </div>
+
+      <div class = "form-group">
+        <label for = "estimated_hours">Estimated Hours </label>
+        <input type = "number"
+               id = "estimated_hours"
+               required
+               name = "estimated_hours" 
+               #estimated_hours = 'ngModel' 
+               [(ngModel)] = "proposal.estimated_hours"
+      >
+      </div>    
+
+      <div class = "form-group">
+        <label for = "hourly_rate">Hourly Rate </label>
+        <input type = "number"
+               id = "hourly_rate"
+               required
+               name = "hourly_rate" 
+               #hourly_rate = 'ngModel' 
+               [(ngModel)] = "proposal.hourly_rate"
+      >
+      </div>   
+
+      <div class = "form-group">
+        <label for = "client_email">Client Email <em>(Optional)</em></label>
+        <input type = "email"
+               id = "client_email"
+               name = "client_email" 
+               #client_email = 'ngModel' 
+               [(ngModel)] = "proposal.client_email"
+      >
+      </div>  
+
+  </form>
+</div>
+
+<!--value reading in from the component, also to have what happens inside ip else somewhere in the page
+    name of the input customer, as the customer is of type Angular Model
+-->
+<div>
+  <p>Hi {{ proposal.customer }}, </p>
+
+  <p>It was pleasure getting to meet you and review your project requirements, I believe it is a great fit for the types of applications that I build out.Please feel free to checkout some of my past projects <a href = "{{proposal.portfolio_url}}">here</a></p>
+
+  <p>To successfully build out the application I will be utilizing {{proposal.tools}}, and a number of other tools to ensure that the projects follows industry wide best practices</p>
+
+  <p>Ensuring that you fully informed is one of my top priorities, so in addition to incorporating everything we discussed, I will also be creating a project management dashboard and sending you a project management dashboard and sending you a project update message daily so that you can have a transparent view of the development as it takes place</p>
+
+  <p>To accomplish the project and meet the requirements that we discussed, I am estimating that it will take {{ proposal.estimated_hours }} hours in development time to complete. The project should take {{proposal.weeks_to_complete }} weeks to complete and with my hourly rate of {{proposal.hourly_rate}}/hour, the estimated total will be {{proposal.hourly_rate * proposal.estimated_hours }}.</p>
+
+  <p>The next step from here is to set up a meetimg to finalize the project and sign contracts</p>
+
+  <p>I am excited to working with you and build out this project</p>
+
+</div>
