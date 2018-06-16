@@ -1,74 +1,105 @@
 <div class = "card container form-container">
   <div class = "row">
     <div class = "col-md-6">
-      <h1> In the New Proposal</h1>
+      <h1>Create the New Proposal</h1>
         <div>
           <form #proposalForm = "ngForm"> <!--name of the form proposalForm of type angular form-->
             <div class = "form-group">
-              <label for = "customer">Customer </label>
+              <label for = "customer">Customer </label><!--[read data in (set value in)]-->
               <input type = "text"
+                     class = "form-control" 
                      id = "customer"
                      placeholder="ABC Company"
                      required
                      name = "customer" 
                      #customer = 'ngModel' 
-                     [(ngModel)] = "proposal.customer"
+                     [(ngModel)] = "proposal.customer" 
               >
+              <div [hidden] = "customer.valid || customer.pristine" > <!--pristine = virgin(the attribute is untouched)-->
+                Customer name is required
+                
+              </div>
               </div>
 
               <div class = "form-group">
                 <label for = "portfolio_url">Portfolio_Url </label>
                 <input type = "text"
+                       class = "form-control"
                        id = "portfolio_url"
                        required
                        name = "portfolio_url" 
                        #portfolio_url = 'ngModel' 
                        [(ngModel)] = "proposal.portfolio_url"
               >
+              <div [hidden] = "portfolio_url.valid || portfolio_url.pristine">
+                Please provide the link to your portfolio
+              </div> 
+             
               </div>
 
               <div class = "form-group">
                 <label for = "tools">Tools </label>
                 <input type = "text"
+                       class = "form-control"
                        id = "tools"
                        required
                        name = "tools" 
                        #tools = 'ngModel' 
                        [(ngModel)] = "proposal.tools"
               >
+              <div [hidden] = "tools.valid || tools.pristine">
+                Please specify the tools to be used
+              </div> 
+              
               </div>
 
               <div class = "form-group">
                 <label for = "estimated_hours">Estimated Hours </label>
                 <input type = "number"
+                       class = "form-control"
                        id = "estimated_hours"
                        required
                        name = "estimated_hours" 
                        #estimated_hours = 'ngModel' 
                        [(ngModel)] = "proposal.estimated_hours"
               >
+              <div [hidden] = "estimated_hours.valid || estimated_hours.pristine">
+                Please specify the estimated time of completion
+              </div> 
+             
               </div>    
 
               <div class = "form-group">
                 <label for = "hourly_rate">Hourly Rate </label>
-                <input type = "number"
-                       id = "hourly_rate"
-                       required
-                       name = "hourly_rate" 
-                       #hourly_rate = 'ngModel' 
-                       [(ngModel)] = "proposal.hourly_rate"
-              >
+                <div class = "input-group mb-3">
+                  <div class="input-group">
+                    <span class = "input-group-text" id = "basic-addon1">$</span>      
+                    <input type = "number"
+                           class = "form-control"
+                           id = "hourly_rate"
+                           required
+                           name = "hourly_rate" 
+                           #hourly_rate = 'ngModel' 
+                           [(ngModel)] = "proposal.hourly_rate"
+                    >
+                  </div>
+                </div>
+              <div [hidden] = "hourly_rate.valid || hourly_rate.pristine">
+                Please provide the hourly rate
+              </div> 
+            
               </div>   
 
               <div class = "form-group">
                 <label for = "client_email">Client Email <em>(Optional)</em></label>
                 <input type = "email"
+                       class = "form-control"
                        id = "client_email"
                        name = "client_email" 
                        #client_email = 'ngModel' 
                        [(ngModel)] = "proposal.client_email"
               >
-              </div>  
+              </div>
 
           </form>
         </div>
