@@ -4,6 +4,7 @@ import { Proposal } from './proposal';
 @Component({
   selector: 'app-proposal-list',
   templateUrl: './proposal-list.component.html',
+  styleUrls: ['proposal-list.component.css']
 
 })
 export class ProposalListComponent{
