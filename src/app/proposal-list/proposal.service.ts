@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';  // for connection to the api
 import { Http, Response, Headers, RequestOptions } from '@angular/http';  // for connection to the api
 import { Observable } from 'rxjs';  // for connection to the api
 import { map } from 'rxjs/operators'; // for connection to the api
-import { Document } from './document';
+import { Proposal } from './proposal';
 
 
 
@@ -13,18 +13,25 @@ import { Document } from './document';
 
 // services are used to bring on the datas, these are not the components that consist of the frontend part
 
-export class DocumentService{
-  private documentsUrl = 'http://0.0.0.0:3001/view_boxes.json';
-
-  constructor(
-    private http: Http     // dependency injection, ie injecting the dependency http
-
+export class ProposalService{
+  private proposalsUrl = 'http://0.0.0.0:3000/proposals';
+  
+  constructor(private http : Http    // dependency injection, ie injecting the dependency http
   ){}
 
-  getDocuments(): Observable<Document[]>{
-    return this.http.get(this.documentsUrl).pipe(map((response: Response) => <Document[]>response.json()))
+  getProposals(): Observable<Proposal[]>{
+    return this.http.get(this.proposalsUrl).pipe(map((response: Response) => <Proposal[]>response.json()))
 
-  }  }
+  } 
+
+  getProposal(id:number){
+    return this.http.get(this.proposalsUrl + "/" + id + ".json");
+  } 
+
+  createProposal(proposal){
+    let headers = new Headers({ 'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers: headers});
+    return this.http.post(this.proposalsUrl, JSON.stringify(proposal), { headers : headers}).pipe(map((res:Response) => res.json()))}}
 
    // private handleError (error: Response | any){
    //    //In real world app we might use a remote login infrastructure
