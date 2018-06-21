@@ -1,21 +1,43 @@
-import { Component } from '@angular/core';
-import { Proposal } from './proposal';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Proposal } from './proposal';  
+import { map, filter, scan } from 'rxjs/operators';
+import { timer, Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from 'rxjs';
+import { ProposalService } from './proposal.service';
 
 @Component({
   selector: 'app-proposal-list',
   templateUrl: './proposal-list.component.html',
-  styleUrls: ['proposal-list.component.css']
+  styleUrls: ['proposal-list.component.css'],
+  providers: [ ProposalService ]
 
 })
-export class ProposalListComponent{
-  proposalOne = new Proposal(1, "ABC Company Ltd", "portfolio.sujal.com", "Ruby on the Rails", 150, 120, 15, "rajesh@gmail.com")
-  proposalTwo = new Proposal(2, "Cool and the hot Company Ltd", "portfolio.shahrukh.com", "Ruby on the Rails", 150, 120, 15, "whatnot@gmail.com")
-  proposalThree = new Proposal(3, "Log Company Ltd", "portfolio.santabanta.com", "Angular", 150, 120, 15, "tiger@gmail.com")
+export class ProposalListComponent implements OnInit{
+  proposals: Proposal[];
+  errorMessage : string;
+  mode = "Observable";
+  constructor(
+    private proposalService : ProposalService,
+    private router : Router
+  ){}
 
-  proposals: Proposal[] = [
-    this.proposalOne,
-    this.proposalTwo,
-    this.proposalThree
-  ]
+  ngOnInit(){
+    let tick = timer(0, 5000);
+    tick.subscribe(() => this.getProposals());
+  }
 
+  getProposals(){
+    this.proposalService.getProposals()
+        .subscribe(
+          proposals => this.proposals = proposals,
+          error => this.errorMessage = <any>error
+          );
+  }
+
+  goToShow(proposal : Proposal) : void{
+    let link = ['/proposal', proposal.id ];
+    this.router.navigate(link);
+
+  }
 }
+
